@@ -12,6 +12,12 @@ let linkerSettings: [LinkerSetting] = [
 */
 ]
 
+#if arch(x86_64)
+  let windowsAppRTBootstrapDll: Resource = .copy("nuget/bin/x86_64/Microsoft.WindowsAppRuntime.Bootstrap.dll")
+#elseif arch(arm64)
+  let windowsAppRTBootstrapDll: Resource = .copy("nuget/bin/arm64/Microsoft.WindowsAppRuntime.Bootstrap.dll")
+#endif
+
 let package = Package(
     name: "swift-windowsappsdk",
     products: [
@@ -36,7 +42,7 @@ let package = Package(
         .target(
             name: "CWinAppSDK",
             resources: [
-                .copy("nuget/bin/Microsoft.WindowsAppRuntime.Bootstrap.dll"),
+              windowsAppRTBootstrapDll
             ],
             linkerSettings: linkerSettings
         ),

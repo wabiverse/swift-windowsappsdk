@@ -93,3 +93,5 @@ iOSInjectionProject/
 .generated
 swift-winrt.rsp
 Package.resolved
+
+.DS_Store
